@@ -1,6 +1,9 @@
 name = "notula_backend"
 compatibility_date = "2023-12-01"
 
+main = "src/index.ts"
+minify = true
+
 # [vars]
 # MY_VAR = "my-variable"
 
@@ -19,3 +22,4 @@ compatibility_date = "2023-12-01"
 
 # [ai]
 # binding = "AI"
+
