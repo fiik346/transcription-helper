@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 
 const app = new Hono();
 
@@ -6,9 +7,20 @@ app.get("/", (c) => {
   return c.text("Hello Hono!");
 });
 
+app.use(
+  "/transcription",
+  cors({
+    origin: "*",
+    allowHeaders: ["X-Custom-Header", "Upgrade-Insecure-Requests"],
+    allowMethods: ["POST", "GET", "OPTIONS"],
+    exposeHeaders: ["Content-Length", "X-Kuma-Revision"],
+    maxAge: 600,
+    credentials: true,
+  }),
+);
+
 app.post("/transcription", async (c) => {
-  const { data } = await c.req.json();
-  const { audio, apiKey } = data;
+  const { audio, apiKey } = await c.req.json();
   if (audio && apiKey) {
     const response = await fetch(audio);
     const audioFile = await response.blob();
