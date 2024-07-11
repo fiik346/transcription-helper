@@ -34,7 +34,7 @@ app.post("/transcription", async (c) => {
       form.append("file", audioFile);
       form.append(
         "prompt",
-        "give marker for every speaker, if speaker more than one",
+        "give marker like speaker 1 or speaker 2 for every speaker, if speaker more than one",
       );
       const transcription = await fetch(
         "https://api.openai.com/v1/audio/transcriptions",
