@@ -35,9 +35,11 @@ app.post("/transcription", async (c) => {
       const transcription = await fetch(
         "https://api.openai.com/v1/audio/transcriptions",
         {
+          method: "POST",
           headers: {
             Authorization: `Bearer ${apiKey}`,
           },
+          body: form,
         },
       );
       const response: any = await transcription.json();
