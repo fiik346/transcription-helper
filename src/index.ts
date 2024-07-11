@@ -32,6 +32,10 @@ app.post("/transcription", async (c) => {
       const form = new FormData();
       form.append("model", "whisper-1");
       form.append("file", audioFile);
+      form.append(
+        "prompt",
+        "give marker for every speaker, if speaker more than one",
+      );
       const transcription = await fetch(
         "https://api.openai.com/v1/audio/transcriptions",
         {
